@@ -1,1 +1,65 @@
 /*Basic Css */
+body {
+    background-color: lightgrey;
+    padding: 20px;
+}
+/* Sets up header size and aligns content into the center */
+.head-wrap {
+    width: 95%;
+    margin: 0 2.5%;
+    text-align: center;
+    border: solid red 2px;
+}
+#stock-box {
+    width: 50%;
+    height: 300px;
+    margin: 0 auto;
+    border: solid blue 2px;
+    display: block;
+}
+/* General wrapper for aligning content to the horozontal center */
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.around {
+    justify-content: space-between;
+}
+#comp-select{
+    margin-left: 2.5%;
+    width: 20%;
+    height: 600px;
+    border: solid black 2px;
+    display: block;
+    float: left;
+}
+#meme-maker {
+    width: 20%;
+    margin-right: 2.5%;
+    height: 600px;
+    border: solid purple 2px;
+    display: block;
+    float: right;
+    
+}
+#meme-box {
+    width: 50%;
+    height: 250px;
+    margin: 0 auto;
+    border: solid green 2px;
+    position: relative;
+}
+#status-meme {
+    margin: 20px 0 20px 20px;
+    height: 200px;
+    width: 200px;
+    border: solid firebrick 2px;
+}
+#user-memes {
+    float: right;
+    margin: 20px 20px 20px 0;
+    height: 200px;
+    width: 300px;
+    border: solid goldenrod 2px;
+}
