@@ -14,7 +14,7 @@ body {
     width: 50%;
     height: 300px;
     margin: 0 auto;
-    border: solid blue 2px;
+    /* border: solid blue 2px; */
     display: block;
 }
 /* General wrapper for aligning content to the horozontal center */
@@ -27,39 +27,39 @@ body {
     justify-content: space-between;
 }
 #comp-select{
-    margin-left: 2.5%;
-    width: 20%;
     height: 600px;
+    /* margin-left: 2.5%;
+    width: 20%;  
     border: solid black 2px;
     display: block;
-    float: left;
-}
+    float: left; */
+} 
 #meme-maker {
-    width: 20%;
-    margin-right: 2.5%;
     height: 600px;
+    /* width: 20%;
+    margin-right: 2.5%;
     border: solid purple 2px;
     display: block;
-    float: right;
+    float: right;  */
     
 }
 #meme-box {
     width: 50%;
     height: 250px;
     margin: 0 auto;
-    border: solid green 2px;
+    /* border: solid green 2px; */
     position: relative;
 }
 #status-meme {
-    margin: 20px 0 20px 20px;
+    /* margin: 20px 0 20px 20px; */
     height: 200px;
-    width: 200px;
-    border: solid firebrick 2px;
+    /* width: 200px; */
+    /* border: solid firebrick 2px; */
 }
 #user-memes {
-    float: right;
-    margin: 20px 20px 20px 0;
+    /* float: right; */
+    /* margin: 20px 20px 20px 0; */
     height: 200px;
-    width: 300px;
-    border: solid goldenrod 2px;
+    /* width: 300px; */
+    /* border: solid goldenrod 2px; */
 }
