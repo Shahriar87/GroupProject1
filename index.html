@@ -1,78 +1,116 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Group Project</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="ProjectAssets/css/style.css" />
-    
+
 </head>
 
 <header>
-<div class="head-wrap">
-    
-      <h1>Stock Memer</h1>
-      <h3>THE place for stocks and memes</h3>
-    
-</div>
+    <div class="head-wrap">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Stock Memer</h1>
+                <h3>THE place for stocks and memes</h3>
+            </div>
+        </div>
+    </div>
 </header>
 
 <br>
 
 <!-- Content -->
+
 <body>
 
+    <!-- <div class="container"> -->
+    <div class="row">
 
-    <!-- Company selector box -->
-    <div id="comp-select">
-        <div class="center">
-            <h2>Company selector here</h2>
-        </div>
-    </div>
-
-    <!-- Stock information display -->
-    <div id="stock-box">
-        <div class="center">
-         <h1>Stock info here</h1>
-        </div>
-    </div>
-
-    <!-- Box for holding stock status display and user comments -->
-    <div id="meme-box">
-
-        <div class="center around">
-
-            <!-- Stock status meme -->
-            <div id="status-meme">
-                <div class="center">
-                 <h3>Stock status meme here</h3>
+        <!-- Company selector box -->
+        <div class="col-md-3">
+            <div class="col-md-12 border border-dark">
+                <div id="comp-select">
+                    <div class="center">
+                        <h2>Company selector here</h2>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <!-- User meme input pool -->
-            <div id="user-memes">
-                <div class="center">
-                 <h3>User input memes here</h3>
+        <!-- Stock information display -->
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12 border border-primary">
+                    <div id="stock-box">
+                        <div class="center">
+                            <h1>Stock info here</h1>
+                        </div>
+                    </div>
                 </div>
             </div>
-        
+            <!-- Box for holding stock status display and user comments -->
+            <div class="row">
+
+                <div id="meme-box" class="col-md-12 border border-success">
+                    <div class="row">
+                        <!-- Stock status meme -->
+                        <div class="col-md-4 border border-danger mt-3 ml-5">
+                            <div id="status-meme">
+                                <div class="center">
+                                    <h3>Stock status meme here</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                        </div>
+
+                        <!-- User meme input pool -->
+                        <div class="col-md-6 border border-warning mt-3">
+                            <div id="user-memes">
+                                <div class="center">
+                                    <h3>User input memes here</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
-    </div>
-
-    <!-- Generate meme comment box -->
-    <div id="meme-maker">
-        <div class="center">
-            <h2>Meme comment maker here</h2>
+        <!-- Generate meme comment box -->
+        <div class="col-md-3">
+            <div class="col-md-12 border border-info">
+                <div id="meme-maker">
+                    <div class="center">
+                        <h2>Meme comment maker here</h2>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="row">
+
+
+
+
+
+    </div>
+    <!-- </div> -->
 
 
 </body>
 
 <!-- Java Link -->
 <footer>
-        <script src="ProjectAssets/javascript/project.js"></script>
+    <script src="ProjectAssets/javascript/project.js"></script>
 </footer>
+
 </html>
