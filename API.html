@@ -3,14 +3,17 @@
 
 <head>
     <meta charset="utf-8">
-    <title>MEME API</title>
+    <title>MEME & YAHOO FINANCE API</title>
 </head>
 
 <body>
+    <h1>Open Console to see the 3 API calls</h1>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script type="text/javascript">
-        // Example queryURL for Giphy API
+
+        // Example queryURL for Meme API
+
         var queryURL = "https://ronreiter-meme-generator.p.mashape.com/images";
 
         $.ajax({
@@ -19,11 +22,47 @@
             headers: {
                 "X-Mashape-Key": "jCuQ07buCmmshB86bfe7bGRUwQOEp1TxvzWjsnsnNSN16soTiH",
                 "Accept": "text/plain"
-            }
+            },
+            async: false
+        }).then(function (response) {
+            console.log(response);
+            console.log("------------------------------------------------------------------------------");
+        });
+
+        // Example queryURL for Alpha Vantage API to find Company Symbol based on Company Name input
+
+        var apiKey = "OITK8BXMQAB96E81";
+        //for example I am using microsoft. We can put any company name here
+        var companyName = "microsoft"
+        var apiUrl = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH"
+
+        var queryURL2 = apiUrl + "&keywords=" + companyName + "&apikey=" + apiKey;
+
+        $.ajax({
+            url: queryURL2,
+            method: "GET",
+            async: false
+        }).then(function (response) {
+            console.log(response);
+            console.log("------------------------------------------------------------------------------");
+        });
+
+        // Example queryURL for Alpha Vantage to search Stock Prices based on Company Symbol
+
+        var apiKey = "OITK8BXMQAB96E81";
+        //for example I am using MSFT for microsoft. 
+        //We can make this dynamic by using the previous API to locate the symbol based on user searched company name.
+        var companySymbol = "MSFT"
+        var apiUrl2 = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE"
+
+        var queryURL3 = apiUrl2 + "&symbol=" + companySymbol + "&apikey=" + apiKey;
+
+        $.ajax({
+            url: queryURL3,
+            method: "GET",
         }).then(function (response) {
             console.log(response);
         });
-
 
     </script>
 
