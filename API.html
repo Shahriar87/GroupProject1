@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>MEME API</title>
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        // Example queryURL for Giphy API
+        var queryURL = "https://ronreiter-meme-generator.p.mashape.com/images";
+
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+            headers: {
+                "X-Mashape-Key": "jCuQ07buCmmshB86bfe7bGRUwQOEp1TxvzWjsnsnNSN16soTiH",
+                "Accept": "text/plain"
+            }
+        }).then(function (response) {
+            console.log(response);
+        });
+
+
+    </script>
+
+</body>
+
+</html>
