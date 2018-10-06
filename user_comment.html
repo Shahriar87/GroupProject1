@@ -7,24 +7,24 @@
     <title>Group Project</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        @import url(https://fonts.googleapis.com/css?family=Roboto:400,600)
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,600);
 
-body{
+body {
   font-family: 'Roboto', sans-serif;
   height: 100%;
   margin-bottom: 50px;
   background: cadetblue;
-}
+};
 h4{
   margin: 5px 20px;
-}
+};
 span{
   float: right;
   margin-right: 10px;
   font-size: 12px;
   font-weight: 300;
 }
-hr{}
+hr{
   border: 0;
   height: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -58,7 +58,7 @@ hr{}
 }
 form {
   margin: 10px 10px 30px 10px;
-  ::-webkit-input-placeholder;
+  /* :-webkit-input-placeholder; */
     color: #CCC;
     font-weight: 300;
 }
@@ -99,8 +99,8 @@ button {
   margin-bottom: 10px;
   background: #FFF;
 }  
-    
-    </style>
+
+</style>
 
 </head>
 
@@ -133,20 +133,31 @@ button {
     </div>
 
 
-
-
-
-
-
 </body>
 
 <footer>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
-    <script src="ProjectAssets/javascript/project.js"></script>
+    <!-- <script src="ProjectAssets/javascript/project.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+
     <script>
 
-        const ref = new Firebase("https://radiant-torch-3037.firebaseio.com/");
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCn2pxZTnTMzIA27cfSAaaAH9vjfSTyrGE",
+            authDomain: "stock-memers.firebaseapp.com",
+            databaseURL: "https://stock-memers.firebaseio.com",
+            projectId: "stock-memers",
+            storageBucket: "stock-memers.appspot.com",
+            messagingSenderId: "781450269578"
+        };
+        firebase.initializeApp(config);
+
+        var database = firebase.database();
+
+        // const ref = new Firebase("https://stock-memers.firebaseio.com");
+
         const form = document.querySelector("form");
 
         form.addEventListener("submit", postComment);
@@ -169,7 +180,7 @@ button {
             let comment = document.getElementById("comment").value;
 
             if (name && comment) {
-                ref.push({
+                database.ref().push({
                     name: name,
                     comment: comment,
                     time: timeStamp()
@@ -180,7 +191,7 @@ button {
             document.getElementById("comment").value = '';
         };
 
-        ref.on("child_added", function (snapshot) {
+        database.ref().on("child_added", function (snapshot) {
             let comment = snapshot.val();
             addComment(comment.name, comment.comment, comment.time);
         });
