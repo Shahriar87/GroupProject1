@@ -1,16 +1,15 @@
-// basic javascript filler
 // basic javascript filler\
 
 var apiUrl = "https://ronreiter-meme-generator.p.mashape.com/meme";
-var topText = "Fast";
-var bottomText = "Slow";
+var topText = "Your investing";
+var bottomText = "in the right shit";
 var font = "Impact";
 var fontSize = "50";
-var meme = "Cool-Obama";
+var meme = "Metal-Jesus";
 var queryURL = apiUrl+"?bottom="+bottomText+"&font="+font+"&font_size="+fontSize+ "&meme="+meme +"&top="+topText;
 
+
 $.ajax({
-    
     url: queryURL,
     method: "GET",
     headers: {
@@ -22,6 +21,11 @@ $.ajax({
     console.log(response);
     console.log("------------------------------------------------------------------------------");
 });
+
+var goodImg = ["Corona","Buddy-Christ","Brain-Griffin","Metal-Jesus"];
+var badImg =  ["Booty-Warrior","Burn-Kitty","Not-Bad","Not-Okay-Rage-Face"];
+
+
 
 
 
