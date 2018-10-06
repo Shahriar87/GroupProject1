@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Group Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,600)
+
+body{
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+  margin-bottom: 50px;
+  background: cadetblue;
+}
+h4{
+  margin: 5px 20px;
+}
+span{
+  float: right;
+  margin-right: 10px;
+  font-size: 12px;
+  font-weight: 300;
+}
+hr{}
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+.container{
+  display: flex;
+  justify-content: center;
+}
+.comment-box{
+  width: 85%;
+  margin-top: 50px;
+  background: #fff;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+  p {
+    margin: 0 30px 15px;
+    font-weight: 300;
+    color: #333;
+    word-wrap: break-word;
+    background: #EEE;
+    padding: 5px 10px;
+}
+.header {
+  margin: 15px 20px;
+  font-size: 27px;
+  font-weight: 600;
+}
+form {
+  margin: 10px 10px 30px 10px;
+  ::-webkit-input-placeholder;
+    color: #CCC;
+    font-weight: 300;
+}
+input[type="text"], textarea {
+  margin: 5px 10px;
+  outline: none;
+  background: #efefef;
+  border: 0;
+  padding: 10px;
+}
+textarea {
+  resize: none;
+  width: 85%;
+}
+input[type="text"] {
+  width: 50%;
+  margin-bottom: 15px;
+}
+button {
+  font-weight: 400;
+  margin: 12px 0 0 10px;
+  border: 0;
+  color: #fff;
+  font-size: 15px;
+  background: #D3775D;
+  padding: 12px 20px 12px 20px;
+  text-decoration: none;
+  transition: all .2s ease;
+
+}
+  button:hover {
+    background: #C15322;
+  }
+
+.footer p {
+  float: right;
+  font-size: 13px;
+  margin-bottom: 10px;
+  background: #FFF;
+}  
+    
+    </style>
+
+</head>
+
+
+
+<body>
+    <div class="container">
+        <div class="comment-box">
+            <div class="comment-form">
+                <div class="header">Add Your Comment</div>
+                <form>
+                    <div>
+                        <input type="text" id="name" placeholder="Name" />
+                    </div>
+                    <div>
+                        <textarea id="comment" rows="3" cols="30" placeholder="Comment"></textarea>
+                    </div>
+                    <button type="submit">COMMENT</button>
+                </form>
+            </div>
+            <div>
+                <h4 class="header">Comments</h4>
+                <div id="comments"></div>
+            </div>
+            <div class="footer">
+                <hr>
+                <p>&copy 2016 by Josh Bivens</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</body>
+
+<footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+    <script src="ProjectAssets/javascript/project.js"></script>
+    <script>
+
+        const ref = new Firebase("https://radiant-torch-3037.firebaseio.com/");
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", postComment);
+
+        const timeStamp = () => {
+            let options = {
+                month: '2-digit',
+                day: '2-digit',
+                year: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            let now = new Date().toLocaleString('en-US', options);
+            return now;
+        };
+
+        function postComment(e) {
+            e.preventDefault();
+            let name = document.getElementById("name").value;
+            let comment = document.getElementById("comment").value;
+
+            if (name && comment) {
+                ref.push({
+                    name: name,
+                    comment: comment,
+                    time: timeStamp()
+                });
+            }
+
+            document.getElementById("name").value = '';
+            document.getElementById("comment").value = '';
+        };
+
+        ref.on("child_added", function (snapshot) {
+            let comment = snapshot.val();
+            addComment(comment.name, comment.comment, comment.time);
+        });
+
+        const addComment = (name, comment, timeStamp) => {
+            let comments = document.getElementById("comments");
+            comments.innerHTML = `<hr><h4>${name} says<span>${timeStamp}</span></h4><p>${comment}</p>${comments.innerHTML}`;
+        }
+
+
+    </script>
+</footer>
+
+</html>

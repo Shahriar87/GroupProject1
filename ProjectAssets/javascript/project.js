@@ -10,7 +10,6 @@ var meme = "Cool-Obama";
 var queryURL = apiUrl+"?bottom="+bottomText+"&font="+font+"&font_size="+fontSize+ "&meme="+meme +"&top="+topText;
 
 $.ajax({
-    
     url: queryURL,
     method: "GET",
     headers: {
