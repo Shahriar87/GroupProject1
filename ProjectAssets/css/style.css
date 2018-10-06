@@ -63,3 +63,13 @@ body {
     /* width: 300px; */
     /* border: solid goldenrod 2px; */
 }
+
+#meme{
+    height: fit-content;
+    width: auto;
+}
+
+img{
+    height: 100%;
+    width:100%;
+}
