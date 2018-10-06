@@ -123,39 +123,61 @@
         </div>
 
         <!-- Generate meme comment box -->
+           
         <div class="col-md-3">
-            <div class="col-md-12 border border-info">
-                <div id="meme-maker">
-                    <div class="center">
-                        <h2>Meme comment maker here</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
+              <div class="col-md-12 border border-info">
+                  <div id="meme-maker">
+                      <div class="center">
+                          <!-- <h2>Meme comment maker here</h2> -->
+                          <div id="commentBody" class="container">
+                              <div class="comment-box">
+                                  <div class="comment-form">
+                                      <div class="header">Add Your Comment</div>
+                                      <form>
+                                          <div>
+                                              <input type="text" id="name" placeholder="Name" />
+                                          </div>
+                                          <div>
+                                              <textarea id="comment" rows="3" cols="30" placeholder="Comment"></textarea>
+                                          </div>
+                                          <button type="submit">COMMENT</button>
+                                      </form>
+                                  </div>
+                                  <div>
+                                      <h4 class="header">Comments</h4>
+                                      <div id="comments"></div>
+                                  </div>
+
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+       
     </div>
     <div class="row">
 
-
-
-
-
     </div>
-    <!-- </div> -->
-
 
 </body>
 
 <!-- Java Link -->
 <footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
-    <script src="ProjectAssets/javascript/project.js"></script>
 
     <!-- Anychart scripts -->
     <!-- <script src="https://cdn.anychart.com/releases/8.4.0/js/anychart-core.min.js"></script>
         <script src="https://cdn.anychart.com/releases/8.4.0/js/anychart-stock.min.js"></script>
         <script src="https://cdn.anychart.com/releases/8.4.0/js/anychart-exports.min.js"></script>
         <script src="https://cdn.anychart.com/releases/8.4.0/js/anychart-ui.min.js"></script> -->
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+    <script src="ProjectAssets/javascript/project.js"></script>
 
 
 </footer>
