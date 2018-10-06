@@ -1,0 +1,122 @@
+<div id="anychart-embed-stock-chart-types-area-chart" class="anychart-embed anychart-embed-stock-chart-types-area-chart">
+<script src="https://cdn.anychart.com/releases/8.4.0/js/anychart-base.min.js"></script>
+<script src="https://cdn.anychart.com/releases/8.4.0/js/anychart-ui.min.js"></script>
+<script src="https://cdn.anychart.com/releases/8.4.0/js/anychart-exports.min.js"></script>
+<script src="https://cdn.anychart.com/releases/8.4.0/js/anychart-stock.min.js"></script>
+<script src="https://cdn.anychart.com/csv-data/msft-daily-short.js"></script>
+<script src="https://cdn.anychart.com/csv-data/orcl-daily-short.js"></script>
+<script src="https://cdn.anychart.com/csv-data/csco-daily-short.js"></script>
+<script src="https://cdn.anychart.com/csv-data/ibm-daily-short.js"></script>
+<div id="ac_style_stock-chart-types-area-chart" style="display:none;">
+html, body, #container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+</div>
+<script>(function(){
+function ac_add_to_head(el){
+	var head = document.getElementsByTagName('head')[0];
+	head.insertBefore(el,head.firstChild);
+}
+function ac_add_link(url){
+	var el = document.createElement('link');
+	el.rel='stylesheet';el.type='text/css';el.media='all';el.href=url;
+	ac_add_to_head(el);
+}
+function ac_add_style(css){
+	var ac_style = document.createElement('style');
+	if (ac_style.styleSheet) ac_style.styleSheet.cssText = css;
+	else ac_style.appendChild(document.createTextNode(css));
+	ac_add_to_head(ac_style);
+}
+ac_add_link('https://cdn.anychart.com/releases/8.4.0/css/anychart-ui.min.css');
+ac_add_link('https://cdn.anychart.com/releases/8.4.0/fonts/css/anychart-font.min.css');
+ac_add_style(document.getElementById("ac_style_stock-chart-types-area-chart").innerHTML);
+ac_add_style(".anychart-embed-stock-chart-types-area-chart{width:600px;height:450px;}");
+})();</script>
+<div id="container"></div>
+<script>
+anychart.onDocumentReady(function () {
+    // The data used in this sample can be obtained from the CDN
+    // https://cdn.anychart.com/csv-data/msft-daily-short.js
+    // https://cdn.anychart.com/csv-data/orcl-daily-short.js
+    // https://cdn.anychart.com/csv-data/csco-daily-short.js
+    // https://cdn.anychart.com/csv-data/ibm-daily-short.js
+
+    // create data tables on loaded data
+    var msftDataTable = anychart.data.table();
+    msftDataTable.addData(get_msft_daily_short_data());
+
+    var orclDataTable = anychart.data.table();
+    orclDataTable.addData(get_orcl_daily_short_data());
+
+    var cscoDataTable = anychart.data.table();
+    cscoDataTable.addData(get_csco_daily_short_data());
+
+    var ibmDataTable = anychart.data.table();
+    ibmDataTable.addData(get_ibm_daily_short_data());
+
+    // create stock chart
+    var chart = anychart.stock();
+
+    // create first plot on the chart with column series
+    var firstPlot = chart.plot(0);
+    // create area series on the first plot
+    var msftSeries = firstPlot.area(msftDataTable.mapAs({'value': 4}));
+    msftSeries.name('MSFT');
+
+    // create second plot on the chart
+    var secondPlot = chart.plot(1);
+    // create spline area series on the second plot
+    var orclSeries = secondPlot.splineArea(orclDataTable.mapAs({'value': 4}));
+    orclSeries.name('ORCL')
+            .fill('#1976d2 0.65')
+            .stroke('1.5 #1976d2');
+
+    // create third plot
+    var thirdPlot = chart.plot(2);
+    // create step area series on the third plot
+    var cscoSeries = thirdPlot.stepArea(cscoDataTable.mapAs({'value': 4}));
+    cscoSeries.name('CSCO')
+            .fill('#ef6c00 0.65')
+            .stroke('1.5 #ef6c00');
+
+    // create forth plot
+    var forthPlot = chart.plot(3);
+    forthPlot.line()
+            .name('MSFT')
+            .data(msftDataTable.mapAs({'value': 4}))
+            .tooltip(false);
+    forthPlot.spline()
+            .name('ORCL')
+            .data(orclDataTable.mapAs({'value': 4}))
+            .tooltip(false);
+    forthPlot.stepLine()
+            .name('CSCO')
+            .data(cscoDataTable.mapAs({'value': 4}))
+            .tooltip(false);
+
+    // create scroller series with mapped data
+    chart.scroller().area(msftDataTable.mapAs({'value': 4}));
+
+    // set chart selected date/time range
+    chart.selectRange('2005-01-03', '2005-11-20');
+    // set container id for the chart
+    chart.container('container');
+    // initiate chart drawing
+    chart.draw();
+
+    // create range picker
+    var rangePicker = anychart.ui.rangePicker();
+    // init range picker
+    rangePicker.render(chart);
+
+    // create range selector
+    var rangeSelector = anychart.ui.rangeSelector();
+    // init range selector
+    rangeSelector.render(chart);
+});
+</script>
+</div>
