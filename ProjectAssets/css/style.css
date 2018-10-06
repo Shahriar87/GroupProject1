@@ -86,8 +86,8 @@ select {
 #graph {
     width: fit-content;
     height: fit-content;
-}
-=======
+};
+
 /*Basic Css */
 body {
     background-color: lightgrey;
@@ -170,7 +170,7 @@ img{
     font-family: 'Roboto', sans-serif;
     height: 100%;
     margin-bottom: 50px;
-    background: cadetblue;
+    /* background: cadetblue; */
   };
 
   h4{
@@ -190,10 +190,10 @@ img{
   }
   
   .comment-box{
-    width: 85%;
-    margin-top: 50px;
+    /* width: 85%; */
+    /* margin-top: 50px; */
     background: #fff;
-    padding: 5px;
+    padding: 1px;
     display: flex;
     justify-content: center;
     flex-direction: column;
