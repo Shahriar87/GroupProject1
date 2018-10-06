@@ -16,21 +16,22 @@
 
         var queryURL = "https://ronreiter-meme-generator.p.mashape.com/images";
 
-        $.ajax({
-            url: queryURL,
-            method: "GET",
-            headers: {
-                "X-Mashape-Key": "jCuQ07buCmmshB86bfe7bGRUwQOEp1TxvzWjsnsnNSN16soTiH",
-                "Accept": "text/plain"
-            },
-            async: false
-        }).then(function (response) {
-            console.log(response);
-            console.log("------------------------------------------------------------------------------");
-        });
+        // $.ajax({
+        //     url: queryURL,
+        //     method: "GET",
+        //     headers: {
+        //         "X-Mashape-Key": "jCuQ07buCmmshB86bfe7bGRUwQOEp1TxvzWjsnsnNSN16soTiH",
+        //         "Accept": "text/plain"
+        //     },
+        //     async: false
+        // }).then(function (response) {
+        //     console.log(response);
+        //     console.log("------------------------------------------------------------------------------");
+        // });
 
         // Example queryURL for Alpha Vantage API to find Company Symbol based on Company Name input
-
+        var comSymbol = "";
+        console.log(comSymbol)
         var apiKey = "OITK8BXMQAB96E81";
         //for example I am using microsoft. We can put any company name here
         var companyName = "microsoft"
@@ -41,28 +42,49 @@
         $.ajax({
             url: queryURL2,
             method: "GET",
-            async: false
         }).then(function (response) {
             console.log(response);
+
+            comSymbol = response.bestMatches[0]['1. symbol'];
+            console.log(comSymbol);
             console.log("------------------------------------------------------------------------------");
+
+            stockPriceProcessing(comSymbol)
         });
+
+        console.log(comSymbol)
 
         // Example queryURL for Alpha Vantage to search Stock Prices based on Company Symbol
 
-        var apiKey = "OITK8BXMQAB96E81";
-        //for example I am using MSFT for microsoft. 
-        //We can make this dynamic by using the previous API to locate the symbol based on user searched company name.
-        var companySymbol = "MSFT"
-        var apiUrl2 = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE"
+        // var apiKey = "OITK8BXMQAB96E81";
+        // //for example I am using MSFT for microsoft. 
+        // //We can make this dynamic by using the previous API to locate the symbol based on user searched company name.
+        // var companySymbol = "MSFT";
+        // // var companySymbol = comSymbol;
 
-        var queryURL3 = apiUrl2 + "&symbol=" + companySymbol + "&apikey=" + apiKey;
+        // var apiUrl2 = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE"
 
-        $.ajax({
-            url: queryURL3,
-            method: "GET",
-        }).then(function (response) {
-            console.log(response);
-        });
+        // var queryURL3 = apiUrl2 + "&symbol=" + companySymbol + "&apikey=" + apiKey;
+
+        function stockPriceProcessing(comSymbol) {
+
+            var apiKey = "OITK8BXMQAB96E81";
+            //for example I am using MSFT for microsoft. 
+            //We can make this dynamic by using the previous API to locate the symbol based on user searched company name.
+            var companySymbol = "MSFT";
+            // var companySymbol = comSymbol;
+
+            var apiUrl2 = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE"
+
+            var queryURL3 = apiUrl2 + "&symbol=" + companySymbol + "&apikey=" + apiKey;
+
+            $.ajax({
+                url: queryURL3,
+                method: "GET",
+            }).then(function (response) {
+                console.log(response);
+            });
+        }
 
     </script>
 
