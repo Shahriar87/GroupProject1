@@ -9,16 +9,18 @@
     <style>
         @import url(https://fonts.googleapis.com/css?family=Roboto:400,600);
 
-body {
+#commentBody {
   font-family: 'Roboto', sans-serif;
   height: 100%;
   margin-bottom: 50px;
   background: cadetblue;
+  display: flex;
+  justify-content: center;
 };
 h4{
   margin: 5px 20px;
 };
-span{
+#timeSpan{
   float: right;
   margin-right: 10px;
   font-size: 12px;
@@ -30,10 +32,7 @@ hr{
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
-.container{
-  display: flex;
-  justify-content: center;
-}
+
 .comment-box{
   width: 85%;
   margin-top: 50px;
@@ -93,12 +92,7 @@ button {
     background: #C15322;
   }
 
-.footer p {
-  float: right;
-  font-size: 13px;
-  margin-bottom: 10px;
-  background: #FFF;
-}  
+
 
 </style>
 
@@ -106,8 +100,8 @@ button {
 
 
 
-<body>
-    <div class="container">
+<body >
+    <div id="commentBody" class="container">
         <div class="comment-box">
             <div class="comment-form">
                 <div class="header">Add Your Comment</div>
@@ -125,10 +119,7 @@ button {
                 <h4 class="header">Comments</h4>
                 <div id="comments"></div>
             </div>
-            <div class="footer">
-                <hr>
-                <p>&copy 2016 by Josh Bivens</p>
-            </div>
+            
         </div>
     </div>
 
@@ -198,7 +189,7 @@ button {
 
         const addComment = (name, comment, timeStamp) => {
             let comments = document.getElementById("comments");
-            comments.innerHTML = `<hr><h4>${name} says<span>${timeStamp}</span></h4><p>${comment}</p>${comments.innerHTML}`;
+            comments.innerHTML = `<hr><h4>${name} says<span id="timeSpan">${timeStamp}</span></h4><p>${comment}</p>${comments.innerHTML}`;
         }
 
 
