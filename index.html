@@ -6,11 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Group Project</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Materialize js for ajax -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
+    <!-- Custom css -->
     <link rel="stylesheet" type="text/css" media="screen" href="ProjectAssets/css/style.css" />
+
+    
 </head>
+
 <header>
     <div class="head-wrap">
         <div class="row">
@@ -21,35 +27,74 @@
         </div>
     </div>
 </header>
+
 <br>
+
 <!-- Content -->
 
 <body>
+
     <!-- <div class="container"> -->
     <div class="row">
+
         <!-- Company selector box -->
         <div class="col-md-3">
             <div class="col-md-12 border border-dark">
                 <div id="comp-select">
-                    <div class="center">
-                        <h2>Company selector here</h2>
+
+                    <div class="row center">
+                        <h2>Company selector</h2>
+                        <h3>Select company name</h3>
+                    </div>
+
+                    <!-- Row to seperate dropdown table from header -->
+                    <div class="row">
+                        <form id="company-select" action="/action_page.php" class="center">
+                            <select name="company" aria-placeholder="select company name">
+                                <option value="default">None</option>
+                                <option value="Apple Inc.">Apple Inc.</option>
+                                <option value="Exxon Mobil">Exxon Mobil</option>
+                                <option value="Alphabet Inc.">Alphabet Inc.</option>
+                                <option value="Microsoft">Microsoft</option>
+                                <option value="Amazon.com">Amazon.com</option>
+                                <option value="Facebook">Facebook</option>
+                                <option value="JPMorgan Chase">JPMorgan Chase</option>
+                                <option value="Berkshire Hathaway">Berkshire Hathaway</option>
+                                <option value="Johnson & Johnson ">Johnson & Johnson </option>
+                            </select>
+                            <input type="submit">
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- Stock information display -->
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12 border border-primary">
                     <div id="stock-box">
                         <div class="center">
-                            <h1>Stock info here</h1>
+                            <div id="container">
+                            <div class="row">
+                                <!-- <img id="graph" src="ProjectAssets/images/Copy of graph.png"> -->
+                                <!-- top div in expamle -->
+                                <!-- <div id="anychart-embed-samples-stock-candlestick-01"  -->
+                                <!-- class="anychart-embed anychart-embed-samples-stock-candlestick-01 show"></div> -->
+
+                                <div class="row">
+                                <!-- second div in example -->
+                                <!-- <div id="ac_style_samples-stock-candlestick-01"></div> -->
+                            </div>
+                        </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Box for holding stock status display and user comments -->
             <div class="row">
+
                 <div id="meme-box" class="col-md-12 border border-success">
                     <div class="row">
                         <!-- Stock status meme -->
@@ -62,6 +107,7 @@
                         </div>
                         <div class="col-md-1">
                         </div>
+
                         <!-- User meme input pool -->
                         <div class="col-md-6 border border-warning mt-3">
                             <div id="user-memes">
@@ -71,48 +117,62 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- Generate meme comment box -->
-        <div class="col-md-3">
-            <div class="col-md-12 border border-info">
-                <div id="meme-maker">
-                    <div class="center">
-                        <!-- <h2>Meme comment maker here</h2> -->
-                        <div id="commentBody" class="container">
-                            <div class="comment-box">
-                                <div class="comment-form">
-                                    <div class="header">Add Your Comment</div>
-                                    <form>
-                                        <div>
-                                            <input type="text" id="name" placeholder="Name" />
-                                        </div>
-                                        <div>
-                                            <textarea id="comment" rows="3" cols="30" placeholder="Comment"></textarea>
-                                        </div>
-                                        <button type="submit">COMMENT</button>
-                                    </form>
-                                </div>
-                                <div>
-                                    <h4 class="header">Comments</h4>
-                                    <div id="comments"></div>
-                                </div>
-                                
-                            </div>
-                        </div>
 
-                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Generate meme comment box -->
+           
+        <div class="col-md-3">
+              <div class="col-md-12 border border-info">
+                  <div id="meme-maker">
+                      <div class="center">
+                          <!-- <h2>Meme comment maker here</h2> -->
+                          <div id="commentBody" class="container">
+                              <div class="comment-box">
+                                  <div class="comment-form">
+                                      <div class="header">Add Your Comment</div>
+                                      <form>
+                                          <div>
+                                              <input type="text" id="name" placeholder="Name" />
+                                          </div>
+                                          <div>
+                                              <textarea id="comment" rows="3" cols="30" placeholder="Comment"></textarea>
+                                          </div>
+                                          <button type="submit">COMMENT</button>
+                                      </form>
+                                  </div>
+                                  <div>
+                                      <h4 class="header">Comments</h4>
+                                      <div id="comments"></div>
+                                  </div>
+
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+       
     </div>
     <div class="row">
+
     </div>
-    <!-- </div> -->
+
 </body>
+
 <!-- Java Link -->
 <footer>
+
+    <!-- Anychart scripts -->
+    <!-- <script src="https://cdn.anychart.com/releases/8.4.0/js/anychart-core.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/8.4.0/js/anychart-stock.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/8.4.0/js/anychart-exports.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/8.4.0/js/anychart-ui.min.js"></script> -->
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
