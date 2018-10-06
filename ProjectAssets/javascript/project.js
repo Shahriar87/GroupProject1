@@ -110,7 +110,7 @@
     
         chart.draw();
     });
-=======
+
  // Firebase setup & Comment Section: 
  
  // Initialize Firebase
