@@ -106,8 +106,8 @@
                         <!-- User meme input pool -->
                         <div class="col-md-6 border border-warning mt-3">
                             <div id="user-memes">
-                                <div class="center">
-                                    <h3>User input memes here</h3>
+                                <div id="uMeme" class="center">
+                                    <!-- <h3>User input memes here</h3> -->
                                 </div>
                             </div>
                         </div>
@@ -127,13 +127,22 @@
                         <div id="commentBody" class="container">
                                 <div class="comment-box">
                                     <div class="comment-form">
-                                        <div class="header">Add Your Comment</div>
+                                        <div class="header">Add Your Meme Comment</div>
                                         <form>
                                             <div>
-                                                <input type="text" id="name" placeholder="Name" />
+                                                <input type="text" id="name" placeholder="Commentor's Name" />
                                             </div>
                                             <div>
-                                                <textarea id="comment" rows="3" cols="30" placeholder="Comment"></textarea>
+                                                <!-- <textarea id="comment" rows="3" cols="30" placeholder="Comment"></textarea> -->
+                                                <input type="text" id="topText" placeholder="Meme Top Text" />
+                                                <input type="text" id="bottomText" placeholder="Meme Bottom Text" />                            
+                                                
+                                                <select id="memeImageName" name="meme" aria-placeholder="Meme Image Selector">
+                                                    <option value="default1">None</option>
+                    
+                                                </select>
+
+
                                             </div>
                                             <button id="commentSub" type="submit">COMMENT</button>
                                         </form>
