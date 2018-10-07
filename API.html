@@ -8,6 +8,8 @@
 
 <body>
     <h1>Open Console to see the 3 API calls</h1>
+    <div id="print"></div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script type="text/javascript">
@@ -23,96 +25,98 @@
                 "X-Mashape-Key": "jCuQ07buCmmshB86bfe7bGRUwQOEp1TxvzWjsnsnNSN16soTiH",
                 "Accept": "text/plain"
             },
-            async: false
+            // async: false
         }).then(function (response) {
             console.log(response);
+            $("#print").text(response.join('", "'));
+
             console.log("------------------------------------------------------------------------------");
         });
 
         // JSON data for all NASDAQ company names & symbol
 
-        var comSymbol = "";
+        // var comSymbol = "";
 
-        $.getJSON("nasdaq-companies.json", function (json) {
-            console.log(json);
-            console.log(json[100].fields.name);
-            console.log(json[100].fields.symbol);
-            comSymbol = json[100].fields.symbol;
+        // $.getJSON("nasdaq-companies.json", function (json) {
+        //     console.log(json);
+        //     console.log(json[100].fields.name);
+        //     console.log(json[100].fields.symbol);
+        //     comSymbol = json[100].fields.symbol;
 
-            stockPriceProcessing(comSymbol);
-            console.log(comSymbol)
+        //     stockPriceProcessing(comSymbol);
+        //     console.log(comSymbol)
 
-        });
-
-
-
-        function stockPriceProcessing(comSymbol) {
-
-            var apiKey = "OITK8BXMQAB96E81";
-
-            var companySymbol = comSymbol;
-
-            var apiUrl2 = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE"
-
-            var queryURL3 = apiUrl2 + "&symbol=" + companySymbol + "&apikey=" + apiKey;
-
-            $.ajax({
-                url: queryURL3,
-                method: "GET",
-            }).then(function (response) {
-                console.log(response);
-            });
-        };
+        // });
 
 
 
-        // Example queryURL for Alpha Vantage API to find Company Symbol based on Company Name input
-        var comSymbol = "";
-        console.log(comSymbol)
-        var apiKey = "OITK8BXMQAB96E81";
-        //for example I am using microsoft. We can put any company name here
-        var companyName = "Aerie Pharmaceuticals"
-        var apiUrl = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH"
+        // function stockPriceProcessing(comSymbol) {
 
-        var queryURL2 = apiUrl + "&keywords=" + companyName + "&apikey=" + apiKey;
+        //     var apiKey = "OITK8BXMQAB96E81";
 
-        $.ajax({
-            url: queryURL2,
-            method: "GET",
-        }).then(function (response) {
-            console.log(response);
+        //     var companySymbol = comSymbol;
 
-            comSymbol = response.bestMatches[0]['1. symbol'];
-            console.log(comSymbol);
-            console.log("------------------------------------------------------------------------------");
+        //     var apiUrl2 = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE"
 
-            stockPriceProcessing(comSymbol)
-        });
+        //     var queryURL3 = apiUrl2 + "&symbol=" + companySymbol + "&apikey=" + apiKey;
 
-        console.log(comSymbol)
+        //     $.ajax({
+        //         url: queryURL3,
+        //         method: "GET",
+        //     }).then(function (response) {
+        //         console.log(response);
+        //     });
+        // };
 
-        // Example queryURL for Alpha Vantage to search Stock Prices based on Company Symbol
-        //for example I am using MSFT for microsoft. 
-        //We can make this dynamic by using the previous API to locate the symbol based on user searched company name.
-        function stockPriceProcessing(comSymbol) {
 
-            var apiKey = "OITK8BXMQAB96E81";
 
-            // var companySymbol = "MSFT";
-            var companySymbol = comSymbol;
+        // // Example queryURL for Alpha Vantage API to find Company Symbol based on Company Name input
+        // var comSymbol = "";
+        // console.log(comSymbol)
+        // var apiKey = "OITK8BXMQAB96E81";
+        // //for example I am using microsoft. We can put any company name here
+        // var companyName = "Aerie Pharmaceuticals"
+        // var apiUrl = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH"
 
-            var apiUrl2 = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE"
+        // var queryURL2 = apiUrl + "&keywords=" + companyName + "&apikey=" + apiKey;
 
-            var queryURL3 = apiUrl2 + "&symbol=" + companySymbol + "&apikey=" + apiKey;
+        // $.ajax({
+        //     url: queryURL2,
+        //     method: "GET",
+        // }).then(function (response) {
+        //     console.log(response);
 
-            $.ajax({
-                url: queryURL3,
-                method: "GET",
-            }).then(function (response) {
-                console.log(response);
-            });
+        //     comSymbol = response.bestMatches[0]['1. symbol'];
+        //     console.log(comSymbol);
+        //     console.log("------------------------------------------------------------------------------");
 
-        };
+        //     stockPriceProcessing(comSymbol)
+        // });
+
+        // console.log(comSymbol)
+
+        // // Example queryURL for Alpha Vantage to search Stock Prices based on Company Symbol
+        // //for example I am using MSFT for microsoft. 
+        // //We can make this dynamic by using the previous API to locate the symbol based on user searched company name.
+        // function stockPriceProcessing(comSymbol) {
+
+        //     var apiKey = "OITK8BXMQAB96E81";
+
+        //     // var companySymbol = "MSFT";
+        //     var companySymbol = comSymbol;
+
+        //     var apiUrl2 = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE"
+
+        //     var queryURL3 = apiUrl2 + "&symbol=" + companySymbol + "&apikey=" + apiKey;
+
+        //     $.ajax({
+        //         url: queryURL3,
+        //         method: "GET",
+        //     }).then(function (response) {
+        //         console.log(response);
+        //     });
+
+        // };
 
 
     </script>
