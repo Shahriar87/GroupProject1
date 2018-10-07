@@ -1,7 +1,7 @@
- // Firebase setup & Comment Section: 
- 
- // Initialize Firebase
- var config = {
+// Firebase setup & Comment Section: 
+
+// Initialize Firebase
+var config = {
     apiKey: "AIzaSyCn2pxZTnTMzIA27cfSAaaAH9vjfSTyrGE",
     authDomain: "stock-memers.firebaseapp.com",
     databaseURL: "https://stock-memers.firebaseio.com",
@@ -13,9 +13,11 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-const form = document.querySelector("form");
+// const form = document.querySelector("form");
 
-form.addEventListener("submit", postComment);
+// form.addEventListener("submit", postComment);
+
+$(document).on("click", "#commentSub", postComment);
 
 const timeStamp = () => {
     let options = {
@@ -53,39 +55,126 @@ database.ref().on("child_added", function (snapshot) {
 
 const addComment = (name, comment, timeStamp) => {
     let comments = document.getElementById("comments");
-    comments.innerHTML = `<hr><h4>${name} says<span id="timeSpan">${timeStamp}</span></h4><p>${comment}</p>${comments.innerHTML}`;
+    comments.innerHTML = `<hr><h5>${name} says<span id="timeSpan">${timeStamp}</span></h5><p>${comment}</p>${comments.innerHTML}`;
 }
 
-// basic javascript filler\
 
-var apiUrl = "https://ronreiter-meme-generator.p.mashape.com/meme";
-var topText = "Your investing";
-var bottomText = "in the right shit";
-var font = "Impact";
-var fontSize = "50";
-var meme = "Metal-Jesus";
-var queryURL = apiUrl+"?bottom="+bottomText+"&font="+font+"&font_size="+fontSize+ "&meme="+meme +"&top="+topText;
+// Make list of Companies
 
-$.ajax({
-    url: queryURL,
-    method: "GET",
-    headers: {
-        "X-Mashape-Key": "jCuQ07buCmmshB86bfe7bGRUwQOEp1TxvzWjsnsnNSN16soTiH",
-        "Accept": "text/plain"
-    },
-}).then(function (response) {
-    $("#meme").append("<img src = 'http://apimeme.com/meme?meme=" + meme +"&top="+topText+"&bottom="+bottomText+"&test=2'>")
-    console.log(response);
-    console.log("------------------------------------------------------------------------------");
+$.getJSON("nasdaq-companies.json", function (json) {
+
+    for (var i = 0; i < json.length; i++) {
+
+        compName = json[i].fields.name;
+        compSymbol = json[i].fields.symbol;
+
+        $("#companyName").append("<option value='" + compSymbol + "' value2='" + compName + "'>" + compName + " (" + compSymbol + ")</option>");
+
+    }
 });
 
-var goodImg = ["Corona","Buddy-Christ","Brain-Griffin","Metal-Jesus"];
-var badImg =  ["Booty-Warrior","Burn-Kitty","Not-Bad","Not-Okay-Rage-Face"];
+// Retriving stock data based on selected company
+
+var symbol = "";
+var Cname = "";
+$("#companyName").change(function () {
+    symbol = $(this).children(":selected").attr("value");
+    Cname = $(this).children(":selected").attr("value2");
+    console.log($(this).children(":selected").attr("value"));
+});
+
+$(document).on("click", "#submit", function (e) {
+    e.preventDefault();
+    stockPriceProcessing(symbol, Cname);
+});
+
+var percentChange = 0;
+// Using Alpha Advantage API to get stock price information
+function stockPriceProcessing(symbol, Cname) {
+
+    var apiKey = "OITK8BXMQAB96E81";
+
+    var companySymbol = symbol;
+
+    var apiUrl2 = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE"
+
+    var queryURL3 = apiUrl2 + "&symbol=" + companySymbol + "&apikey=" + apiKey;
+
+    $.ajax({
+        url: queryURL3,
+        method: "GET",
+    }).then(function (response) {
+        console.log(response);
+        $("#stockData").empty();
+        $("#stockData").append("<li><p>" + Cname + "</p></li>");
+        $("#stockData").append("<li><p> Open Price: $" + response["Global Quote"]["02. open"] + "</p></li>");
+        $("#stockData").append("<li><p> High Price: $" + response["Global Quote"]["03. high"] + "</p></li>");
+        $("#stockData").append("<li><p> Low Price: $" + response["Global Quote"]["04. low"] + "</p></li>");
+        $("#stockData").append("<li><p> Current Price: $" + response["Global Quote"]["05. price"] + "</p></li>");
+        $("#stockData").append("<li><p> Latest Trading Day: " + response["Global Quote"]["07. latest trading day"] + "</p></li>");
+        $("#stockData").append("<li><p> Previous Close: $" + response["Global Quote"]["08. previous close"] + "</p></li>");
+        $("#stockData").append("<li><p> Change: " + response["Global Quote"]["09. change"] + "</p></li>");
+        $("#stockData").append("<li><p> Change Percent: " + response["Global Quote"]["10. change percent"] + "</p></li>");
+
+        percentChange = parseFloat(response["Global Quote"]["10. change percent"]);
+        percentCheck(percentChange);
+
+    });
+};
+
+// Meme Api call for Meme image
+
+function percentCheck(percentChange) {
+    var goodMeme =
+    {
+        goodImg: ["Corona", "Buddy-Christ", "Cool-Obama", "Metal-Jesus"],
+        topT: ["Your investing"],
+        bottomT: ["in the right shit"]
+    };
+
+    var badMeme =
+    {
+        badImg: ["Booty-Warrior", "Burn-Kitty", "Not-Bad", "Not-Okay-Rage-Face"],
+        topT: ["Your investing"],
+        bottomT: ["in the wrong shit"],
+    };
+
+    var apiUrl = "https://ronreiter-meme-generator.p.mashape.com/meme";
+    var font = "Impact";
+    var fontSize = "50";
+    var topText;
+    var bottomText;
+    var meme;
+
+    if (percentChange < 0) {
+        meme = badMeme.badImg[1];
+        topText = badMeme.topT[0];
+        bottomText = badMeme.bottomT[0];
+    } else {
+        meme = goodMeme.goodImg[2];
+        topText = goodMeme.topT[0];
+        bottomText = goodMeme.bottomT[0];
+    }
+
+    var queryURL = apiUrl + "?bottom=" + bottomText + "&font=" + font + "&font_size=" + fontSize + "&meme=" + meme + "&top=" + topText;
+
+    $.ajax({
+        url: queryURL,
+        method: "GET",
+        headers: {
+            "X-Mashape-Key": "jCuQ07buCmmshB86bfe7bGRUwQOEp1TxvzWjsnsnNSN16soTiH",
+            "Accept": "text/plain"
+        },
+    }).then(function (response) {
+        $("#meme").html("<img src = 'http://apimeme.com/meme?meme=" + meme + "&top=" + topText + "&bottom=" + bottomText + "&test=2'>")
+        
+    });
+};
 
 
 
-//"https://ronreiter-meme-generator.p.mashape.com/meme?bottom=Bottom+text&font=Impact&font_size=50&meme=Condescending-Wonka&top=Top+text")
-//'https://ronreiter-meme-generator.p.mashape.com/meme?bottom=Bottom+text&font=Impact&font_size=50&meme=Cool-Obama&top=Top+text' 
-// http://apimeme.com/meme?meme=Condescending-Wonka&top=Top+text&bottom=Bottom+text&test=1
+
+
+
 
 

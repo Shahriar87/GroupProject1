@@ -16,6 +16,12 @@ body {
     margin: 0 auto;
     /* border: solid blue 2px; */
     display: block;
+    width: fit-content;
+    height: fit-content;
+}
+
+ul {
+    height: 100%;
 }
 /* General wrapper for aligning content to the horozontal center */
 .center {
@@ -82,6 +88,7 @@ img{
 }
 select {
     display: inline;
+    color: black;
 }
 #graph {
     width: fit-content;
@@ -199,12 +206,12 @@ img{
     flex-direction: column;
   }
     p {
-      margin: 0 30px 15px;
-      font-weight: 300;
+      /* margin: 0 30px 15px;
+      font-weight: 300; */
       color: #333;
       word-wrap: break-word;
       background: #EEE;
-      padding: 5px 10px;
+      /* padding: 5px 10px; */
   }
   .header {
     margin: 15px 20px;
@@ -218,6 +225,7 @@ img{
       font-weight: 300;
   }
   input[type="text"], textarea {
+      color: black;
     margin: 5px 10px;
     outline: none;
     background: #efefef;
@@ -247,5 +255,12 @@ img{
     button:hover {
       background: #C15322;
     }
-  
+
+    option{
+        color: black;
+    }
+
+    /* Stock info design */
+    
+    
 
