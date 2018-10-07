@@ -92,22 +92,34 @@ function stockPriceProcessing(symbol, Cname) {
                 // set the data
                 table = anychart.data.table();
                 table.addData([
-            
+                    //this is just filler data to how the chart works
+                     ['2004-01-12', 91.21, 92.14, 91.21, 91.55],
+        ['2001-01-13', 91.45, 91.51, 89.01, 89.70],
+        ['2001-04-14', 89.90, 90.46, 89.75, 90.31],
+        ['2001-08-15', 95.07, 95.65, 93.55, 94.02],
+        ['2002-01-16', 95.00, 95.35, 94.71, 95.32],
+        ['2002-04-20', 96.00, 97.44, 95.73, 97.10],
+        ['2002-08-21', 97.23, 98.04, 96.64, 97.70],
+        ['2003-01-22', 97.84, 98.16, 97.32, 97.51],
+        ['2003-04-23', 97.82, 98.21, 97.10, 97.90],
+        ['2003-08-26', 97.90, 99.85, 97.56, 99.85],
+        ['2004-01-27', 99.40, 99.67, 98.70, 98.80],
+        ['2004-08-28', 99.15, 99.42, 97.28, 97.38]
                 ]);
               
                 // map the data
-                mapping = table.mapAs();
-                mapping.addField(response["Global Quote"]["02. open"]);
-                mapping.addField(response["Global Quote"]["03. high"]);
-                mapping.addField(response["Global Quote"]["04. low"]);
-                mapping.addField(response["Global Quote"]["05. price"]);
+                //mapping = table.mapAs();
+                //mapping.addField(response["Global Quote"]["02. open"]);
+                //mapping.addField(response["Global Quote"]["03. high"]);
+                //mapping.addField(response["Global Quote"]["04. low"]);
+                //mapping.addField(response["Global Quote"]["05. price"]);
             
                 // map the data
-                // mapping = table.mapAs();
-                // mapping.addField('open', 1);
-                // mapping.addField('high', 2);
-                // mapping.addField('low', 3);
-                // mapping.addField('close', 4);
+                mapping = table.mapAs();
+                mapping.addField('open', 1);
+                mapping.addField('high', 2);
+                mapping.addField('low', 3);
+                mapping.addField('close', 4);
                 
                 var chart = anychart.stock();
             /////////////////////////
