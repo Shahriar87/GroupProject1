@@ -13,68 +13,6 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-// const form = document.querySelector("form");
-
-// form.addEventListener("submit", postComment);
-
-// User Comment Posting
-
-// $(document).on("click", "#commentSub", postComment);
-
-// const timeStamp = () => {
-//     let options = {
-//         month: '2-digit',
-//         day: '2-digit',
-//         year: '2-digit',
-//         hour: '2-digit',
-//         minute: '2-digit'
-//     };
-//     let now = new Date().toLocaleString('en-US', options);
-//     return now;
-// };
-
-// function postComment(e) {
-//     e.preventDefault();
-//     let name = document.getElementById("name").value;
-//     let comment = document.getElementById("comment").value;
-
-//     if (name && comment) {
-//         database.ref().push({
-//             name: name,
-//             comment: comment,
-//             time: timeStamp()
-//         });
-//     }
-
-//     document.getElementById("name").value = '';
-//     document.getElementById("comment").value = '';
-// };
-
-// database.ref().on("child_added", function (snapshot) {
-//     let comment = snapshot.val();
-//     addComment(comment.name, comment.comment, comment.time);
-// });
-
-// const addComment = (name, comment, timeStamp) => {
-//     let comments = document.getElementById("comments");
-//     comments.innerHTML = `<hr><h5>${name} says<span id="timeSpan">${timeStamp}</span></h5><p>${comment}</p>${comments.innerHTML}`;
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Make list of Memes
 
 $.getJSON("meme-images.json", function (json2) {
@@ -85,6 +23,7 @@ $.getJSON("meme-images.json", function (json2) {
     }
 });
 
+// User Meme Comment Post
 
 const timeStamp = () => {
     let options = {
@@ -98,108 +37,66 @@ const timeStamp = () => {
     return now;
 };
 
-// function postComment() {
-
 var mName = "";
 var name = "";
 var topTxt = "";
 var bottomTxt = "";
+var memeId = "";
 
 $("#memeImageName").change(function () {
     mName = $(this).children(":selected").attr("value");
     name = $("#name").val().trim();
     topTxt = $("#topText").val().trim();
     bottomTxt = $("#bottomText").val().trim();
-
-    console.log(mName);
-    console.log(name);
-    console.log(topTxt)
-    var source = "http://apimeme.com/meme?meme=" + mName + "&top=" + topTxt + "&bottom=" + bottomTxt + "&test=1";
-    console.log(source);
-
-    $(document).on("click", "#commentSub", function (e) {
-        e.preventDefault();
-
-        if (name && topTxt && bottomTxt && mName) {
-            database.ref().push({
-                name: name,
-                imgSource: source,
-                time: timeStamp()
-            });
-        }
-        $("#name").val("");
-        $("#topText").val("");
-        $("#bottomText").val("");
-    });
-
+    // console.log(mName);
+    // console.log(name);
+    // console.log(topTxt)
 });
 
-// };
+$(document).on("click", "#commentSub", function (e) {
+    e.preventDefault();
 
-database.ref().on("child_added", function (snapshot) {
-    let comment = snapshot.val();
-    addComment(comment.name, comment.imgSource, comment.time);
+    if (name && topTxt && bottomTxt && mName) {
+        database.ref().push({
+            name: name,
+            mName: mName,
+            topTxt: topTxt,
+            bottomTxt: bottomTxt,
+            time: timeStamp()
+        });
+    }
+    $("#name").val("");
+    $("#topText").val("");
+    $("#bottomText").val("");
+
+    mName = "";
+    name = "";
+    topTxt = "";
+    bottomTxt = "";
 });
 
-const addComment = (name, imgSource, timeStamp) => {
-    
-    let comments = document.getElementById("comments");
-    comments.innerHTML = `<hr><h5>${name} says<span id="timeSpan">${timeStamp}</span></h5><img src=${imgSource}><img>${comments.innerHTML}`;
-    
-    // $("#uMeme").append("<hr><h5>" + name + " says<span>"+ timeStamp +"</span></h5><img src='"+imgSource+"></img></hr>")
+database.ref().on("child_added", function (childSnapshot) {
+    let comment = childSnapshot.val();
+    memeId = childSnapshot.key;
+    addComment(comment.name, comment.mName, comment.topTxt, comment.bottomTxt, comment.time, memeId);
+    // console.log(memeId);
+});
 
-    console.log(comments.innerHTML);
+const addComment = (name, mName, topTxt, bottomTxt, timeStamp, memeId) => {
+    // console.log(memeId);
+    $("#uMeme").prepend("<div id='" + memeId + "'><hr><h5><b>" + name + " says on <span id='timeSpan'>" + timeStamp
+        + "                    </b><i class='material-icons delete' data-train='" + memeId +
+        "' style='font-size:30px; color: red'>close</i></span></h5><img src='http://apimeme.com/meme?meme="
+        + mName + "&top=" + topTxt + "&bottom=" + bottomTxt + "&test=1'</img></div>");
 }
 
+// Delete Meme Comments
 
-
-
-
-// var apiUrl = "https://ronreiter-meme-generator.p.mashape.com/meme";
-// var font = "Impact";
-// var fontSize = "50";
-// var topText;
-// var bottomText;
-// var meme;
-// var i = 0;
-// var queryURL = apiUrl + "?bottom=" + bottomText + "&font=" + font + "&font_size=" + fontSize + "&meme=" + meme + "&top=" + topText;
-
-// $.ajax({
-//     url: queryURL,
-//     method: "GET",
-//     headers: {
-//         "X-Mashape-Key": "jCuQ07buCmmshB86bfe7bGRUwQOEp1TxvzWjsnsnNSN16soTiH",
-//         "Accept": "text/plain"
-//     },
-// }).then(function (response) {
-//     console.log(response);
-//     $("#meme").html("<img src = 'http://apimeme.com/meme?meme=" + meme + "&top=" + topText + "&bottom=" + bottomText + "&test=1'>")
-
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$(document).on('click', '.delete', function () {
+    var memeKey = $(this).attr('data-train');
+    database.ref(memeKey).remove();
+    $("#" + memeKey).remove();
+});
 
 // Make list of Companies
 
@@ -250,15 +147,15 @@ function stockPriceProcessing(symbol, Cname) {
     }).then(function (response) {
         console.log(response);
         $("#stockData").empty();
-        $("#stockData").append("<li><p>" + Cname + "</p></li>");
-        $("#stockData").append("<li><p> Open Price: $" + response["Global Quote"]["02. open"] + "</p></li>");
-        $("#stockData").append("<li><p> High Price: $" + response["Global Quote"]["03. high"] + "</p></li>");
-        $("#stockData").append("<li><p> Low Price: $" + response["Global Quote"]["04. low"] + "</p></li>");
-        $("#stockData").append("<li><p> Current Price: $" + response["Global Quote"]["05. price"] + "</p></li>");
-        $("#stockData").append("<li><p> Latest Trading Day: " + response["Global Quote"]["07. latest trading day"] + "</p></li>");
-        $("#stockData").append("<li><p> Previous Close: $" + response["Global Quote"]["08. previous close"] + "</p></li>");
-        $("#stockData").append("<li><p> Change: " + response["Global Quote"]["09. change"] + "</p></li>");
-        $("#stockData").append("<li><p> Change Percent: " + response["Global Quote"]["10. change percent"] + "</p></li>");
+        $("#stockData").append("<li><b>" + Cname + "</b></li><br>");
+        $("#stockData").append("<li><b>Open Price:</b> $" + response["Global Quote"]["02. open"] + "</li>");
+        $("#stockData").append("<li><b>High Price:</b> $" + response["Global Quote"]["03. high"] + "</li>");
+        $("#stockData").append("<li><b>Low Price:</b> $" + response["Global Quote"]["04. low"] + "</li>");
+        $("#stockData").append("<li><b>Current Price:</b> $" + response["Global Quote"]["05. price"] + "</li>");
+        $("#stockData").append("<li><b>Latest Trading Day:</b> " + response["Global Quote"]["07. latest trading day"] + "</li>");
+        $("#stockData").append("<li><b>Previous Close:</b> $" + response["Global Quote"]["08. previous close"] + "</li>");
+        $("#stockData").append("<li><b>Change:</b> " + response["Global Quote"]["09. change"] + "</li>");
+        $("#stockData").append("<li><b>Change Percent:</b> " + response["Global Quote"]["10. change percent"] + "</li>");
 
         percentChange = parseFloat(response["Global Quote"]["10. change percent"]);
         percentCheck(percentChange);
@@ -266,7 +163,7 @@ function stockPriceProcessing(symbol, Cname) {
     });
 };
 
-// Meme Api call for Meme image
+// Meme Api call for Stock Meme image
 
 function percentCheck(percentChange) {
     var goodMeme =
@@ -315,8 +212,8 @@ function percentCheck(percentChange) {
             "Accept": "text/plain"
         },
     }).then(function (response) {
-        console.log(response);
-        $("#meme").html("<img src = 'http://apimeme.com/meme?meme=" + meme + "&top=" + topText + "&bottom=" + bottomText + "&test=1'>")
+        // console.log(response);
+        $("#cMeme").html("<img src = 'http://apimeme.com/meme?meme=" + meme + "&top=" + topText + "&bottom=" + bottomText + "&test=1'>")
 
     });
 };
