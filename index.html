@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Group Project</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Materialize js for ajax -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
     <!-- Bootstrap -->
@@ -17,153 +19,166 @@
 
 </head>
 
-<header>
-    <div class="head-wrap">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Stock Memer</h1>
-                <h3>The place for stocks and memes</h3>
-            </div>
-        </div>
-    </div>
-</header>
-
-<br>
 
 <!-- Content -->
 
 <body>
 
-    <!-- <div class="container"> -->
-    <div class="row">
-
-        <!-- Company selector box -->
-        <div class="col-md-3">
-            <div class="col-md-12 border border-dark">
-                <div id="comp-select">
-
-                    <div class="center">
-                        <h2>Company selector</h2>
-                        <h3>Select company name</h3>
-                    </div>
-
-                    <!-- Row to seperate dropdown table from header -->
+    <div>
+        <div class="container">
+            <header>
+                <div class="head-wrap">
                     <div class="row">
-                        <form id="company-select" action="/action_page.php" class="center">
-                            <select id="companyName" name="company" aria-placeholder="select company name">
-                                <option value="default">None</option>
-                                <!-- <option value="Apple Inc.">Apple Inc.</option> -->
-
-                            </select>
-                            <button type="submit2" id="submit">SUBMIT</button>
-                        </form>
+                        <div class="col-md-12">
+                            <h1><b>Stock Memer</b></h1>
+                            <h3><b>The place for stocks and memes</b></h3>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </header>
 
-        <!-- Stock information display -->
-        <div class="col-md-6">
+            <br>
+
+            <!-- <div class="container"> -->
             <div class="row">
-                <div id="stock-box" class="col-md-12 border border-primary">
-                    <div class="row">
-                        <div class="col-md-8">
-                            Graph
-                        </div>
-                        <div class="col-md-4">
-                            <ul id="stockData">
 
-                            </ul>
-                        </div>
-                        <!-- <img id="graph" src="ProjectAssets/images/Copy of graph.png"> -->
-                        <!-- top div in expamle -->
-                        <!-- <div id="anychart-embed-samples-stock-candlestick-01"  -->
-                        <!-- class="anychart-embed anychart-embed-samples-stock-candlestick-01 show"></div> -->
+                <!-- Company selector box -->
+                <div class="col-md-3">
+                    <div class="col-md-12 border border-dark">
+                        <div id="comp-select">
 
-                        <!-- <div class="row">
-                                        second div in example
-                                        <div id="ac_style_samples-stock-candlestick-01"></div>
-                                    </div> -->
+                            <div class="center">
+                                <h3>Select company name</h3>
+                            </div>
+
+                            <!-- Row to seperate dropdown table from header -->
+                            <div class="row">
+                                <form id="company-select" action="/action_page.php">
+                                    <div>
+                                        <select id="companyName" name="company" aria-placeholder="select company name">
+                                            <option value="default">None</option>
+                                            <!-- <option value="Apple Inc.">Apple Inc.</option> -->
+
+                                        </select>
+                                    </div>
+                                    <button type="submit2" id="submit">SUBMIT</button>
+                                </form>
+                                <div class="col-lg-12">
+                                    <ul id="stockData">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Stock information display -->
+                <div class="col-md-6">
+                    <div class="row">
+                        <div id="stock-box" class="col-md-12 border border-primary">
+                            <div class="row">
+                                <div class="col-lg-12 text-center">
+                                    Graph
+                                </div>
+                                <!-- <div class="col-lg-5">
+                                    <ul id="stockData">
+
+                                    </ul>
+                                </div> -->
+                                <!-- <img id="graph" src="ProjectAssets/images/Copy of graph.png"> -->
+                                <!-- top div in expamle -->
+                                <!-- <div id="anychart-embed-samples-stock-candlestick-01"  -->
+                                <!-- class="anychart-embed anychart-embed-samples-stock-candlestick-01 show"></div> -->
+
+                                <!-- <div class="row">
+                                                            second div in example
+                                                            <div id="ac_style_samples-stock-candlestick-01"></div>
+                                                        </div> -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Generate meme comment box -->
+
+                <div class="col-md-3">
+                    <div class="col-md-12 border border-info">
+                        <div id="meme-maker">
+                            <div class="center">
+                                <!-- <h2>Meme comment maker here</h2> -->
+                                <div id="commentBody" class="container">
+                                    <div class="comment-box">
+                                        <div class="comment-form">
+                                            <div>
+                                                <h3>Comment</h3>
+                                            </div>
+                                            <form>
+                                                <div>
+                                                    <input type="text" id="name" placeholder="Commentor's Name" />
+                                                </div>
+                                                <div>
+                                                    <!-- <textarea id="comment" rows="3" cols="30" placeholder="Comment"></textarea> -->
+                                                    <input type="text" id="topText" placeholder="Meme Top Text" />
+                                                    <input type="text" id="bottomText" placeholder="Meme Bottom Text" />
+
+                                                    <select id="memeImageName" name="meme" aria-placeholder="Meme Image Selector">
+                                                        <option value="default1">None</option>
+
+                                                    </select>
+
+
+                                                </div>
+                                                <button id="commentSub" type="submit">COMMENT</button>
+                                            </form>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
             <!-- Box for holding stock status display and user comments -->
-            <div class="row">
+            <div class="row" id="memeWrapper">
 
                 <div id="meme-box" class="col-md-12 border border-success">
                     <div class="row">
                         <!-- Stock status meme -->
-                        <div class="col-md-4 border border-danger mt-3 ml-5">
+                        <div class="col-md-5 mt-3 ml-5">
                             <div id="status-meme">
-                                <div id="meme" class="center">
-                                    <!-- <h3>Stock status meme here</h3> -->
+                                <h3 class="border border-danger mb-4 text-center">Stock status meme</h3>
+                                <div id="cMeme">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-1">
+
                         </div>
 
                         <!-- User meme input pool -->
-                        <div class="col-md-6 border border-warning mt-3">
+                        <div class="col-md-5 mt-3">
                             <div id="user-memes">
-                                <div id="uMeme" class="center">
-                                    <!-- <h3>User input memes here</h3> -->
+                                <h3 class="border border-warning text-center">User Meme Comments</h3>
+                                <div id="uMeme">
                                 </div>
                             </div>
                         </div>
                     </div>
 
                 </div>
+
             </div>
+
         </div>
-
-        <!-- Generate meme comment box -->
-
-        <div class="col-md-3">
-            <div class="col-md-12 border border-info">
-                <div id="meme-maker">
-                    <div class="center">
-                        <!-- <h2>Meme comment maker here</h2> -->
-                        <div id="commentBody" class="container">
-                                <div class="comment-box">
-                                    <div class="comment-form">
-                                        <div class="header">Add Your Meme Comment</div>
-                                        <form>
-                                            <div>
-                                                <input type="text" id="name" placeholder="Commentor's Name" />
-                                            </div>
-                                            <div>
-                                                <!-- <textarea id="comment" rows="3" cols="30" placeholder="Comment"></textarea> -->
-                                                <input type="text" id="topText" placeholder="Meme Top Text" />
-                                                <input type="text" id="bottomText" placeholder="Meme Bottom Text" />                            
-                                                
-                                                <select id="memeImageName" name="meme" aria-placeholder="Meme Image Selector">
-                                                    <option value="default1">None</option>
-                    
-                                                </select>
-
-
-                                            </div>
-                                            <button id="commentSub" type="submit">COMMENT</button>
-                                        </form>
-                                    </div>
-                                    <div>
-                                        <h4 class="header">Comments</h4>
-                                        <div id="comments"></div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
-    <div class="row">
 
-    </div>
 
 </body>
 
@@ -176,7 +191,7 @@
         <script src="https://cdn.anychart.com/releases/8.4.0/js/anychart-exports.min.js"></script>
         <script src="https://cdn.anychart.com/releases/8.4.0/js/anychart-ui.min.js"></script> -->
 
-    
+
     <script type="text/javascript" src="nasdaq-companies.json"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
