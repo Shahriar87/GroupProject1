@@ -13,7 +13,7 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-// Make list of Memes
+// Make Dropdown list of Memes
 
 $.getJSON("meme-images.json", function (json2) {
     // console.log(json2);
@@ -45,16 +45,16 @@ var memeId = "";
 
 $("#memeImageName").change(function () {
     mName = $(this).children(":selected").attr("value");
-    name = $("#name").val().trim();
-    topTxt = $("#topText").val().trim();
-    bottomTxt = $("#bottomText").val().trim();
-    // console.log(mName);
-    // console.log(name);
-    // console.log(topTxt)
 });
 
 $(document).on("click", "#commentSub", function (e) {
     e.preventDefault();
+    name = $("#name").val().trim();
+    topTxt = $("#topText").val();
+    bottomTxt = $("#bottomText").val();
+    // console.log(mName);
+    // console.log(name);
+    // console.log(topTxt)
 
     if (name && topTxt && bottomTxt && mName) {
         database.ref().push({
@@ -68,6 +68,7 @@ $(document).on("click", "#commentSub", function (e) {
     $("#name").val("");
     $("#topText").val("");
     $("#bottomText").val("");
+    $("#memeImageName").val($("#memeImageName").data("default-value"));
 
     mName = "";
     name = "";
