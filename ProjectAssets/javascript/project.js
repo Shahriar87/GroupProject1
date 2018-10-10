@@ -281,7 +281,7 @@ function percentCheck(percentChange) {
 
     var badMeme =
     {
-        badImg: ["Booty-Warrior", "Burn-Kitty", "Bitch-Please", "Angry-Baby", "Aaaaand-Its-Gone","Criana","Dave-Chapelle","III-Have-You-Know-Spongebob"],
+        badImg: ["Booty-Warrior", "Burn-Kitty", "Bitch-Please", "Angry-Baby", "Aaaaand-Its-Gone","Criana","Dave-Chappelle","III-Have-You-Know-Spongebob"],
         topT: ["Cant you read", "Burn", "your money", "Get your", "Aaaaand","We not making","Can I Have","I Mean"],
         bottomT: ["before you invest", " ", "is screwed", "Shit together", "Its-Gone","No Money!","A Dollar","Its Whatever"],
     };
