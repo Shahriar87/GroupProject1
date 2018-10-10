@@ -2,87 +2,50 @@
 body {
     background-color: lightgrey;
     padding: 20px;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+#containerWrap{
+    background-color: lightgrey;
+
 }
 /* Sets up header size and aligns content into the center */
 .head-wrap {
     width: 95%;
     margin: 0 2.5%;
     text-align: center;
-    border: solid red 2px;
-}
-#stock-box {
-    width: 50%;
-    height: 300px;
-    margin: 0 auto;
-    /* border: solid blue 2px; */
-    display: block;
-    width: fit-content;
-    height: fit-content;
+    background-image: url(https://www.xm.com/wp-content/uploads/2017/10/Stock-Charts-5.jpg);
+    /* background-repeat: no-repeat; */
+    background-position: center center;
+    /* background-size: contain;  */
+    color: rgb(39, 10, 10);
+    /* border: solid red 2px; */
 }
 
 ul {
     height: 100%;
 }
+
 /* General wrapper for aligning content to the horozontal center */
-.center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.around {
-    justify-content: space-between;
-}
+
 .show {
     display: table-row-group;
 }
-#comp-select{
-    height: 600px;
-    /* margin-left: 2.5%;
-    width: 20%;  
-    border: solid black 2px;
-    display: block;
-    float: left; */
-} 
-#meme-maker {
-    height: 600px;
-    /* width: 20%;
-    margin-right: 2.5%;
-    border: solid purple 2px;
-    display: block;
-    float: right;  */   
+
+#compSelectWrap{
+    background-color: rgb(5,158,174);
+
 }
-#meme-box {
-    width: 50%;
-    height: 250px;
-    margin: 0 auto;
-    /* border: solid green 2px; */
-    position: relative;
-}
-#status-meme {
-    /* margin: 20px 0 20px 20px; */
-    height: 200px;
-    /* width: 200px; */
-    /* border: solid firebrick 2px; */
-}
-#user-memes {
-    /* float: right; */
-    /* margin: 20px 20px 20px 0; */
-    height: 200px;
-    /* width: 300px; */
-    /* border: solid goldenrod 2px; */
-}
-#meme{
-    height: fit-content;
-    width: auto;
-}
-img{
-    height: 100%;
-    width:100%;
-}
+
+
+
 #company-select {
     width: 100%;
-    height: 200px;
-    border: red 2px solid;
+    height: 80px;
+    /* border: red 2px solid; */
+    background-color: rgb(5,158,174);
+
     position: relative;
     
 }
@@ -95,18 +58,9 @@ select {
     height: fit-content;
 };
 
-/*Basic Css */
-body {
-    background-color: lightgrey;
-    padding: 20px;
-}
+
 /* Sets up header size and aligns content into the center */
-.head-wrap {
-    width: 95%;
-    margin: 0 2.5%;
-    text-align: center;
-    border: solid red 2px;
-}
+
 #stock-box {
     width: 50%;
     height: 300px;
@@ -124,15 +78,12 @@ body {
     justify-content: space-between;
 }
 #comp-select{
-    height: 600px;
-    /* margin-left: 2.5%;
-    width: 20%;  
-    border: solid black 2px;
-    display: block;
-    float: left; */
+    height: 420px;
+    background-color: rgb(5,158,174);
+
 } 
 #meme-maker {
-    height: 600px;
+    height: 420px;
     /* width: 20%;
     margin-right: 2.5%;
     border: solid purple 2px;
@@ -142,17 +93,24 @@ body {
 }
 #meme-box {
     width: 50%;
-    height: 250px;
+    height: 100%;
     margin: 0 auto;
     /* border: solid green 2px; */
     position: relative;
 }
+
+#memeWrapper {
+    background: #EEE;
+    height: 100%;
+}
+
 #status-meme {
     /* margin: 20px 0 20px 20px; */
     height: 200px;
     /* width: 200px; */
     /* border: solid firebrick 2px; */
 }
+
 #user-memes {
     /* float: right; */
     /* margin: 20px 20px 20px 0; */
@@ -161,23 +119,21 @@ body {
     /* border: solid goldenrod 2px; */
 }
 
-#meme{
+#cMeme, #uMeme{
     height: fit-content;
     width: auto;
 }
 
 img{
-    height: 100%;
+    height: 300px;
     width:100%;
 }
 
 /* Comment Section Style starts here */
 
 #commentBody {
-    font-family: 'Roboto', sans-serif;
-    height: 100%;
-    margin-bottom: 50px;
-    /* background: cadetblue; */
+    height: fit-content;
+    background: #efefef;
   };
 
   h4{
@@ -198,13 +154,15 @@ img{
   
   .comment-box{
     /* width: 85%; */
-    /* margin-top: 50px; */
-    background: #fff;
+    margin-top: 15px;
+    background: #efefef;
     padding: 1px;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    height: 405px;
   }
+  
     p {
       /* margin: 0 30px 15px;
       font-weight: 300; */
@@ -213,11 +171,8 @@ img{
       background: #EEE;
       /* padding: 5px 10px; */
   }
-  .header {
-    margin: 15px 20px;
-    font-size: 27px;
-    font-weight: 600;
-  }
+  
+
   form {
     margin: 10px 10px 30px 10px;
     /* :-webkit-input-placeholder; */
@@ -255,21 +210,30 @@ img{
     button:hover {
       background: #C15322;
     }
+    i:hover {
+        background: #C15322;
+    }
 
     option{
         color: black;
     }
-#stockData {
-    height: 300px;
-    line-height: 1;
-    background-color: rgb(38, 129, 99);
-    width:100%;
-}
+
     /* Stock info design */
-    #container{
-        float: left;
-        position: absolute;
-        height: 300px;
-        width:68%;
+
+    #stockData {
+        /* height: 300px; */
+        line-height: 1.5;
+        /* background-color: rgb(5,158,174); */
+        /* width:100%; */
     }
+        #container{
+            /* float: left; */
+            /* position: absolute; */
+            height: 300px;
+            width:100%;
+        }
     
+    .hidden{
+        display: none;
+    }
+
