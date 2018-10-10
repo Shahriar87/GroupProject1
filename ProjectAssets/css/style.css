@@ -1,28 +1,40 @@
 /*Basic Css */
 body {
-    background-color: lightgrey;
+    background-color: rgb(5,158,174);
     padding: 20px;
     font-family: 'Roboto', sans-serif;
 
 }
-
+#headcolor{
+    background-color: rgb(11,72,93);
+}
 #containerWrap{
-    background-color: lightgrey;
+    background-color: rgb(11,72,93);
+    height: fit-content;
 
 }
 /* Sets up header size and aligns content into the center */
 .head-wrap {
-    width: 95%;
+    /* width: 95%; */
     margin: 0 2.5%;
     text-align: center;
-    background-image: url(https://www.xm.com/wp-content/uploads/2017/10/Stock-Charts-5.jpg);
+    background-image: url(../images/Stock-Chart-header.jpg);
     /* background-repeat: no-repeat; */
     background-position: center center;
     /* background-size: contain;  */
-    color: rgb(39, 10, 10);
-    /* border: solid red 2px; */
+    color:rgb(1,155,147);
+    font-family: 'Orbitron', sans-serif;
 }
-
+.block{
+    display: flex;
+    flex-flow: column;
+}
+.fancy{
+    width: fit-content;
+    /* background-image: url(../images/grey-background-tile.jpg); */
+    background-color: #333;
+    padding: 0 5px;
+}
 ul {
     height: 100%;
 }
@@ -77,10 +89,12 @@ select {
     justify-content: space-between;
 }
 #comp-select{
-    height: 420px;
+    height:fit-content;
+    width: auto;
     background-color: rgb(5,158,174);
 
 } 
+/* Meme stuff */
 #meme-maker {
     height: 420px;
     /* width: 20%;
@@ -92,22 +106,22 @@ select {
 }
 #meme-box {
     width: 50%;
-    height: 100%;
+    height: fit-content;
     margin: 0 auto;
-    /* border: solid green 2px; */
+    background-color: rgb(5,158,174);
     position: relative;
 }
 
 #memeWrapper {
-    background: #EEE;
-    height: 100%;
+    background-color: rgb(5,158,174);
+    height: fit-content;
 }
 
 #status-meme {
     /* margin: 20px 0 20px 20px; */
-    height: 200px;
-    /* width: 200px; */
-    /* border: solid firebrick 2px; */
+    height: 100%;
+    width: 100%;
+    contain: content;
 }
 
 #user-memes {
@@ -121,6 +135,8 @@ select {
 #cMeme, #uMeme{
     height: fit-content;
     width: auto;
+    background-color: rgb(5,158,174);
+    padding: 5px;
 }
 
 img{
@@ -133,6 +149,7 @@ img{
 #commentBody {
     height: fit-content;
     background-color: rgb(5,158,174);
+    width: auto;
   };
 
   h4{
@@ -235,4 +252,3 @@ img{
     .hidden{
         display: none;
     }
-
