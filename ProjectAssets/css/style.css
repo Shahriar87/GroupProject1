@@ -33,9 +33,8 @@ ul {
     display: table-row-group;
 }
 
-#compSelectWrap{
+.selectWrap{
     background-color: rgb(5,158,174);
-
 }
 
 
@@ -133,7 +132,7 @@ img{
 
 #commentBody {
     height: fit-content;
-    background: #efefef;
+    background-color: rgb(5,158,174);
   };
 
   h4{
@@ -155,7 +154,7 @@ img{
   .comment-box{
     /* width: 85%; */
     margin-top: 15px;
-    background: #efefef;
+    background-color: rgb(5,158,174);
     padding: 1px;
     display: flex;
     justify-content: center;
