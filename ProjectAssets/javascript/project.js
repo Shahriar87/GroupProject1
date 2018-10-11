@@ -242,7 +242,7 @@ function timeSeries(symbol, Cname) {
             //     // this is just filler data to how the chart works
             //     ['2004-01-12', 91.21, 92.14, 91.21, 91.55],
             //     ['2001-01-13', 91.45, 91.51, 89.01, 89.70],
-          
+
             // map the data
             mapping = table.mapAs();
             mapping.addField('open', 1);
@@ -271,20 +271,34 @@ function timeSeries(symbol, Cname) {
 // Meme Api call for Stock Meme image
 
 function percentCheck(percentChange) {
-    
+
     var goodMeme =
     {
-        goodImg: ["Cool-Obama", "Buddy-Christ", "Chuck-Norris-Approves", "Metal-Jesus", "Gangnam-Style-PSY","Fast-Furious-Johnny-Tran","Ghetto-Jesus"],
-        topT: ["Your Investing", "Right On", "Because", "You", "OPA","Money is","Draaank"],
-        bottomT: ["In the Right Shit", "Buddy", "He bought it too", "rock!", "Gangnam style","own my mind","Is on Me!"]
+        goodImg: ["Cool-Obama", "Buddy-Christ", "Chuck-Norris-Approves", "Metal-Jesus", "Gangnam-Style-PSY", "Fast-Furious-Johnny-Tran", "Ghetto-Jesus"],
+        topT: ["Your Investing", "Right On", "Because", "You", "OPA", "Money is", "Draaank"],
+        bottomT: ["In the Right Shit", "Buddy", "He bought it too", "rock!", "Gangnam style", "own my mind", "Is on Me!"]
     };
 
     var badMeme =
     {
-        badImg: ["Booty-Warrior", "Burn-Kitty", "Bitch-Please", "Angry-Baby", "Aaaaand-Its-Gone","Criana","Dave-Chappelle","III-Have-You-Know-Spongebob"],
-        topT: ["Cant you read", "Burn", "your money", "Get your", "Aaaaand","We not making","Can I Have","I Mean"],
-        bottomT: ["before you invest", " ", "is screwed", "Shit together", "Its-Gone","No Money!","A Dollar","Its Whatever"],
+        badImg: ["Booty-Warrior", "Burn-Kitty", "Bitch-Please", "Angry-Baby", "Aaaaand-Its-Gone", "Criana", "Dave-Chappelle", "Ill-Have-You-Know-Spongebob"],
+        topT: ["Cant you read", "Burn", "your money", "Get your", "Aaaaand", "We not making", "Can I Have", "I Mean"],
+        bottomT: ["before you invest", " ", "is screwed", "Shit together", "Its-Gone", "No Money!", "A Dollar", "Its Whatever"],
     };
+
+    var greaterMeme =
+    {
+        greaterImg: ["Deadpool-Surprised", "Deadpool-Pickup-Lines", "Derp", "Drunk Baby", "Hora-Extra"],
+        topT: ["Omg Omg Omg", "Life is", "I Can", "Im Not", "Just"],
+        bottomT: ["Thats Awesome", "Good", "See The Future", "Worried At All", "Wait on it"],
+    };
+    var horribleMeme =
+    {
+        horribleImg: ["Determined-Guy-Rage-Face", "Disappointed-Tyson", "Dont-You-Squidward", "FFFFFFFUUUUUUUUUUUU", "Kevin-Hart-The-Hell"],
+        topT: ["Wtf", "I told you", "You", "You Know What", "Help"],
+        bottomT: ["Shut it Down", "Plan B MF", "Big Mad!", "Fuck It", "Meee!!!"],
+    };
+
 
     var apiUrl = "https://ronreiter-meme-generator.p.mashape.com/meme";
     var font = "Impact";
@@ -295,17 +309,38 @@ function percentCheck(percentChange) {
     var i = 0;
 
     if (percentChange < 0) {
-        i = Math.floor(Math.random() * badMeme.badImg.length);
-        console.log(i);
-        meme = badMeme.badImg[i];
-        topText = badMeme.topT[i];
-        bottomText = badMeme.bottomT[i];
+
+        if (percentChange < -3) {
+            i = Math.floor(Math.random() * horribleMeme.horribleImg.length);
+            console.log(i);
+            meme = horribleMeme.horribleImg[i];
+            topText = horribleMeme.topT[i];
+            bottomText = horribleMeme.bottomT[i];
+
+        } else {
+            i = Math.floor(Math.random() * badMeme.badImg.length);
+            console.log(i);
+            meme = badMeme.badImg[i];
+            topText = badMeme.topT[i];
+            bottomText = badMeme.bottomT[i];
+        }
+
     } else {
-        i = Math.floor(Math.random() * goodMeme.goodImg.length);
-        console.log(i);
-        meme = goodMeme.goodImg[i];
-        topText = goodMeme.topT[i];
-        bottomText = goodMeme.bottomT[i];
+
+        if (percentChange > 3) {
+            i = Math.floor(Math.random() * greaterMeme.greaterImg.length);
+            console.log(i);
+            meme = greaterMeme.greaterImg[i];
+            topText = greaterMeme.topT[i];
+            bottomText = greaterMeme.bottomT[i];
+
+        } else {
+            i = Math.floor(Math.random() * goodMeme.goodImg.length);
+            console.log(i);
+            meme = goodMeme.goodImg[i];
+            topText = goodMeme.topT[i];
+            bottomText = goodMeme.bottomT[i];
+        }
     }
 
     var queryURL = apiUrl + "?bottom=" + bottomText + "&font=" + font + "&font_size=" + fontSize + "&meme=" + meme + "&top=" + topText;
