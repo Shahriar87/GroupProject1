@@ -286,6 +286,20 @@ function percentCheck(percentChange) {
         bottomT: ["before you invest", " ", "is screwed", "Shit together", "Its-Gone","No Money!","A Dollar","Its Whatever"],
     };
 
+    var greaterMeme =
+    {
+        greatImg: ["Deadpool-Surprised","Deadpool-Pickup-Lines","Derp","Drunk Baby","Hora-Extra"],
+        topT: ["Omg Omg Omg","Life is","I Can","Im Not","Just"],
+        bottomT: ["Thats Awesome","Good","See The Future","Worried At All","Wait on it"],
+    };
+
+    var horribleMeme =
+    { 
+        horribleMeme:["Determined-Guy-Rage-Face","Disappointed-Tyson","Dont-You-Squidward","FFFFFFFUUUUUUUUUUUU","Kevin-Hart-The-Hell"];
+        topt:["Wtf","I told you","You","You Know What","Help"];
+        bottomT["Shut it Down","Plan B MF","Big Mad!","Fuck It","Meee!!!"];
+    };
+
     var apiUrl = "https://ronreiter-meme-generator.p.mashape.com/meme";
     var font = "Impact";
     var fontSize = "50";
