@@ -28,19 +28,19 @@
 
     <header>
         <div id="headcolor" class="jumbotron">
-        <div class="head-wrap">
-            <div class="row">
-                <div class="col-md-12 center block">
-                    <h1 class="fancy"><b>Stock Memer</b></h1>
-                    <h3 class="fancy"><b>The place for stocks and memes</b></h3>
+            <div class="head-wrap">
+                <div class="row">
+                    <div class="col-md-12 center block">
+                        <h1 class="fancy"><b>Stock Memer</b></h1>
+                        <h3 class="fancy"><b>The place for stocks and memes</b></h3>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </header>
 
     <br>
-    <div id="containerWrap" class="jumbotron">
+    <div id="containerWrap" class="wrapper jumbotron">
         <div class="container">
 
 
@@ -52,7 +52,7 @@
                         <div id="comp-select">
 
                             <div class="center">
-                                <h3>Select company name</h3>
+                                <h3>Select Company</h3>
                             </div>
 
                             <!-- Row to seperate dropdown table from header -->
@@ -149,8 +149,8 @@
                     <div class="row">
                         <!-- Stock status meme -->
                         <div class="col-md-5 mt-3">
-                            <div id="status-meme"  class="around">
-                                <h3 class="mb-4 text-center">Stock status meme</h3>
+                            <div id="status-meme" class="around">
+                                <h3 id="stockStatus" class="text-center">Stock Meme</h3>
                                 <div id="cMeme">
                                 </div>
                             </div>
@@ -162,7 +162,7 @@
                         <!-- User meme input pool -->
                         <div class="col-md-5 mt-3">
                             <div id="user-memes">
-                                <h3 class="text-center">User Meme Comments</h3>
+                                <h3 id="userStatus" class="text-center">User Meme Comments</h3>
                                 <div id="uMeme">
                                 </div>
                             </div>
@@ -174,13 +174,21 @@
             </div>
 
         </div>
+        <div class="push"></div>               
+
     </div>
 
 
-</body>
 
 <!-- Javascript Link -->
-<footer>
+<footer class="footer bg-info text-white mt-5 border-top border-info">
+    <div class="container-fluid py-3">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p>Copyright &copy; The Meme Squad!</p>
+            </div>
+        </div>
+    </div>
 
     <script type="text/javascript" src="nasdaq-companies.json"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
@@ -191,5 +199,8 @@
     <!-- <script src="ProjectAssets/javascript/graph.js"></script> -->
 
 </footer>
+
+</body>
+
 
 </html>

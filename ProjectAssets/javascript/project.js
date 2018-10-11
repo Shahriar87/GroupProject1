@@ -87,7 +87,7 @@ const addComment = (name, mName, topTxt, bottomTxt, timeStamp, memeId) => {
     // console.log(memeId);
     $("#uMeme").prepend("<div id='" + memeId + "'><hr><h5><b>" + name + " says on <span id='timeSpan'>" + timeStamp
         + "                    </b><i class='material-icons delete' data-train='" + memeId +
-        "' style='font-size:30px; color: red'>close</i></span></h5><img src='http://apimeme.com/meme?meme="
+        "' style='font-size:25px; color: red'>close</i></span></h5><img src='http://apimeme.com/meme?meme="
         + mName + "&top=" + topTxt + "&bottom=" + bottomTxt + "&test=1'</img></div>");
 }
 
@@ -256,12 +256,23 @@ function timeSeries(symbol, Cname) {
             /////////////////
             // set the series
             var series = chart.plot(0).candlestick(mapping);
-            series.name(Cname);
+            series.name(companySymbol);
 
-            chart.title(companySymbol);
+            chart.title(Cname);
+
+            var title = chart.title();
+            title.enabled(true);
+            title.fontColor('#00008B');
+            title.fontWeight(900);
+
             chart.container('container');
 
             chart.draw();
+
+            chart.background().fill({
+                keys: ["#fff", "#66f", "#fff"],
+                angle: 130,
+            });
         });
 
     });
@@ -296,7 +307,7 @@ function percentCheck(percentChange) {
     {
         horribleImg: ["Determined-Guy-Rage-Face", "Disappointed-Tyson", "Dont-You-Squidward", "FFFFFFFUUUUUUUUUUUU", "Kevin-Hart-The-Hell"],
         topT: ["Wtf", "I told you", "You", "You Know What", "Help"],
-        bottomT: ["Shut it Down", "Plan B MF", "Big Mad!", "Fuck It", "Meee!!!"],
+        bottomT: ["Shut it Down", "Plan B MF", "Big Mad!", "F*** It", "Meee!!!"],
     };
 
 
