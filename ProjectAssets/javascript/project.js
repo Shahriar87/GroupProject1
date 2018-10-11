@@ -13,6 +13,10 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+// Initially Show all 3 most recent User Memes
+
+// appendUserMeme();
+
 // Make Dropdown list of Memes
 
 $.getJSON("meme-images.json", function (json2) {
@@ -74,22 +78,70 @@ $(document).on("click", "#commentSub", function (e) {
     name = "";
     topTxt = "";
     bottomTxt = "";
+
+    appendUserMeme()
+
+    console.log(commentArray);
 });
+
+
+// Creating an Array to only show 3 Memes at a time. 
+
+var commentArray = [
+    // [name, mName, topTxt, bottomTxt, timeStamp, memeId]
+];
+
 
 database.ref().on("child_added", function (childSnapshot) {
     let comment = childSnapshot.val();
     memeId = childSnapshot.key;
+
+    console.log(comment.name);
     addComment(comment.name, comment.mName, comment.topTxt, comment.bottomTxt, comment.time, memeId);
     // console.log(memeId);
 });
 
-const addComment = (name, mName, topTxt, bottomTxt, timeStamp, memeId) => {
+const addComment = (name, mName, topTxt, bottomTxt, time, memeId) => {
     // console.log(memeId);
-    $("#uMeme").prepend("<div id='" + memeId + "'><hr><h5><b>" + name + " says on <span id='timeSpan'>" + timeStamp
-        + "                    </b><i class='material-icons delete' data-train='" + memeId +
-        "' style='font-size:25px; color: red'>close</i></span></h5><img src='http://apimeme.com/meme?meme="
-        + mName + "&top=" + topTxt + "&bottom=" + bottomTxt + "&test=1'</img></div>");
+    commentArray.push({ name, mName, topTxt, bottomTxt, time, memeId });
+};
+
+function appendUserMeme() {
+
+    var n = commentArray.length - 1;
+
+    $("#uMeme").empty();
+
+    console.log(commentArray[1].mName)
+
+    for (var i = n; i > (n - 3); i--) {
+        $("#uMeme").append("<div id='" + commentArray[i].memeId + "'><hr><h5><b>" + commentArray[i].name + " says on <span id='timeSpan'>" + commentArray[i].time
+            + "                    </b><i class='material-icons delete' data-train='" + commentArray[i].memeId +
+            "' style='font-size:25px; color: red'>close</i></span></h5><img src='http://apimeme.com/meme?meme="
+            + commentArray[i].mName + "&top=" + commentArray[i].topTxt + "&bottom=" + commentArray[i].bottomTxt + "&test=1'</img></div>");
+    }
+
+    $("#uMeme").append("<button id='showAll'>SHOW ALL</button>")
 }
+
+// Click Show All button to show all User Memes posted so far
+
+$(document).on("click", "#showAll", function (e) {
+
+    var n = commentArray.length - 1
+
+    $("#uMeme").empty();
+
+    for (var i = n; i > -1; i--) {
+        $("#uMeme").append("<div id='" + commentArray[i].memeId + "'><hr><h5><b>" + commentArray[i].name + " says on <span id='timeSpan'>" + commentArray[i].time
+            + "                    </b><i class='material-icons delete' data-train='" + commentArray[i].memeId +
+            "' style='font-size:25px; color: red'>close</i></span></h5><img src='http://apimeme.com/meme?meme="
+            + commentArray[i].mName + "&top=" + commentArray[i].topTxt + "&bottom=" + commentArray[i].bottomTxt + "&test=1'</img></div>");
+    }
+
+});
+
+
 
 // Delete Meme Comments
 
@@ -97,6 +149,12 @@ $(document).on('click', '.delete', function () {
     var memeKey = $(this).attr('data-train');
     database.ref(memeKey).remove();
     $("#" + memeKey).remove();
+
+    var index = commentArray.findIndex(x => x.memeId==memeKey);
+    console.log(index);
+    if (index > -1) {
+        commentArray.splice(index, 1);
+    }
 });
 
 // Make list of Companies
@@ -287,7 +345,7 @@ function percentCheck(percentChange) {
     {
         goodImg: ["Cool-Obama", "Buddy-Christ", "Chuck-Norris-Approves", "Metal-Jesus", "Gangnam-Style-PSY", "Fast-Furious-Johnny-Tran", "Ghetto-Jesus"],
         topT: ["Your Investing", "Right On", "Because", "You", "OPA", "Money is", "Draaank"],
-        bottomT: ["In the Right Shit", "Buddy", "He bought it too", "rock!", "Gangnam style", "own my mind", "Is on Me!"]
+        bottomT: ["In the Right Shit", "Buddy", "Chuck Norris said so", "rock!", "Gangnam style", "own my mind", "Is on Me!"]
     };
 
     var badMeme =
